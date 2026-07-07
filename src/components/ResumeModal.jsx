@@ -26,28 +26,28 @@ const ResumeModal = ({ isOpen, onClose }) => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full h-full md:w-[90%] md:h-[90%] md:rounded-2xl bg-white overflow-hidden shadow-2xl"
+            className="relative w-full h-full md:w-[90%] md:h-[90%] md:rounded-2xl bg-[#1E1E1E] overflow-hidden shadow-2xl border border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
               <a
                 href={resumePdf}
                 download
-                className="w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center text-gray-700 hover:bg-white hover:text-[#ff2a2a] transition-all cursor-pointer"
+                className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm shadow-md flex items-center justify-center text-white hover:bg-white hover:text-[#121212] transition-all cursor-pointer"
                 title="Download"
               >
                 <Download className="w-4 h-4" />
               </a>
               <button
                 onClick={onClose}
-                className="w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center text-gray-700 hover:bg-white hover:text-gray-900 transition-all cursor-pointer"
+                className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm shadow-md flex items-center justify-center text-white hover:bg-white hover:text-[#121212] transition-all cursor-pointer"
                 title="Close"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="w-full h-full bg-gray-100">
+            <div className="w-full h-full bg-[#121212]">
               <embed
                 src={resumePdf}
                 className="w-full h-full"

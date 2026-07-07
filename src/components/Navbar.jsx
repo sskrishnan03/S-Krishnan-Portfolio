@@ -7,7 +7,6 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
 
-  // Handle scroll to track positioning parameters safely
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 40) {
@@ -20,56 +19,53 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Home', 'About', 'Expertise', 'Skills', 'Education', 'Projects', 'Certifications', 'Contact'];
+  const navLinks = ['Home', 'About', 'Expertise', 'Skills', 'Projects', 'Contact'];
 
   return (
-    <nav 
+    <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        isOpen 
-          ? 'bg-[#ff2a2a] py-4'
-          : isScrolled 
-            ? 'bg-white/80 backdrop-blur-xl py-3 shadow-[0_8px_32px_rgba(0,0,0,0.06)]' 
+        isOpen
+          ? 'bg-[#121212] py-4'
+          : isScrolled
+            ? 'bg-[#121212]/90 backdrop-blur-xl py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]'
             : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-        
-        {/* Left Side: Dynamic Logo font node configurations */}
+
         <div className="flex items-center">
-          <a 
-            href="#" 
+          <a
+            href="#"
             className={`text-2xl font-black tracking-tight transition-colors duration-500 ${
-              isOpen || !isScrolled ? 'text-white' : 'text-gray-900'
+              isOpen || !isScrolled ? 'text-white' : 'text-white'
             }`}
           >
-            S Krishnan <span className="text-[#ff2a2a]">.</span>
+            S Krishnan <span className="text-white">.</span>
           </a>
         </div>
 
-        {/* Center: Desktop Links with dynamic contrasting rules */}
         <div className="hidden md:flex space-x-7 lg:space-x-8">
           {navLinks.map((link) => (
-            <a 
-              key={link} 
+            <a
+              key={link}
               href={`#${link.toLowerCase()}`}
               className={`font-semibold text-sm tracking-wide relative group transition-colors duration-500 ${
-                isScrolled ? 'text-gray-600 hover:text-gray-950' : 'text-white/80 hover:text-white'
+                isScrolled ? 'text-[#D4D4D4] hover:text-white' : 'text-white/80 hover:text-white'
               }`}
             >
               {link}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#ff2a2a] transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </div>
 
-        {/* Right Side: Responsive CTA Frame Buttons */}
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={() => setResumeModalOpen(true)}
             className={`px-5 py-2.5 rounded-full text-sm font-black transition-all duration-500 flex items-center gap-2 cursor-pointer ${
               isScrolled
-                ? 'bg-[#ff2a2a] text-white hover:bg-gray-900 hover:shadow-[0_10px_25px_rgba(255,42,42,0.25)]'
-                : 'bg-white/10 border border-white/20 text-white hover:bg-[#ff2a2a] hover:border-[#ff2a2a] backdrop-blur-md'
+                ? 'bg-white text-[#121212] hover:bg-[#D4D4D4]'
+                : 'bg-white/10 border border-white/20 text-white hover:bg-white hover:text-[#121212] backdrop-blur-md'
             }`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,24 +73,23 @@ const Navbar = () => {
             </svg>
             Resume
           </button>
-          <a 
-            href="#contact" 
+          <a
+            href="#contact"
             className={`px-5 py-2.5 rounded-full text-sm font-black transition-all duration-500 ${
               isScrolled
-                ? 'bg-gray-900 text-white hover:bg-[#ff2a2a] hover:shadow-[0_10px_25px_rgba(255,42,42,0.25)]'
-                : 'bg-white/10 border border-white/20 text-white hover:bg-white hover:text-black backdrop-blur-md'
+                ? 'bg-white text-[#121212] hover:bg-[#D4D4D4]'
+                : 'bg-white/10 border border-white/20 text-white hover:bg-white hover:text-[#121212] backdrop-blur-md'
             }`}
           >
             Hire Me
           </a>
         </div>
 
-        {/* Mobile Hamburger Trigger Controllers */}
         <div className="md:hidden flex items-center">
-          <button 
+          <button
             onClick={() => setIsOpen(!isOpen)}
             className={`focus:outline-none p-2 transition-colors duration-500 ${
-              isOpen || !isScrolled ? 'text-white' : 'text-gray-900'
+              isOpen || !isScrolled ? 'text-white' : 'text-white'
             }`}
             aria-label="Toggle navigation drawer menu"
           >
@@ -109,19 +104,18 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Panel Expansion Drawer Overlay */}
-      <div 
+      <div
         className={`md:hidden absolute top-full left-0 w-full transition-all duration-500 ease-in-out ${
-          isOpen ? 'max-h-[460px] py-6 opacity-100 bg-[#ff2a2a] shadow-2xl' : 'max-h-0 opacity-0 pointer-events-none'
+          isOpen ? 'max-h-[460px] py-6 opacity-100 bg-[#121212] shadow-2xl' : 'max-h-0 opacity-0 pointer-events-none'
         }`}
       >
         <div className="flex flex-col px-6 space-y-4">
           {navLinks.map((link) => (
-            <a 
-              key={link} 
+            <a
+              key={link}
               href={`#${link.toLowerCase()}`}
               onClick={() => setIsOpen(false)}
-              className="text-white hover:text-black font-extrabold text-base border-b border-white/10 pb-2.5 transition-colors"
+              className="text-white hover:text-[#D4D4D4] font-extrabold text-base border-b border-white/10 pb-2.5 transition-colors"
             >
               {link}
             </a>
@@ -129,14 +123,14 @@ const Navbar = () => {
           <div className="pt-2 flex flex-col gap-3">
              <button
                 onClick={() => { setResumeModalOpen(true); setIsOpen(false); }}
-                className="inline-block px-6 py-3 rounded-full border-2 border-white text-white font-black hover:bg-white hover:text-[#ff2a2a] transition-all duration-300 w-full text-center shadow-xl cursor-pointer"
+                className="inline-block px-6 py-3 rounded-full border-2 border-white text-white font-black hover:bg-white hover:text-[#121212] transition-all duration-300 w-full text-center shadow-xl cursor-pointer"
               >
                 Resume
               </button>
-             <a 
+             <a
                href="#contact"
-               onClick={() => setIsOpen(false)} 
-               className="inline-block px-6 py-3 rounded-full bg-white text-[#ff2a2a] font-black hover:bg-gray-950 hover:text-white transition-all duration-300 w-full text-center shadow-xl"
+               onClick={() => setIsOpen(false)}
+               className="inline-block px-6 py-3 rounded-full bg-white text-[#121212] font-black hover:bg-[#D4D4D4] transition-all duration-300 w-full text-center shadow-xl"
              >
                Hire Me
              </a>

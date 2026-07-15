@@ -4,6 +4,7 @@ import routheonSkups from '../assets/about/RoutheonSkups.png';
 import studivance from '../assets/about/Studivance.png';
 import contactsManager from '../assets/about/Contacts Manager.png';
 import sqlmind from '../assets/about/SQLMind AI.png';
+import noteqira from '../assets/about/noteqira.png';
 
 
 const projects = [
@@ -25,7 +26,7 @@ const projects = [
     description: 'A web-based student planner that lets students manage subjects, daily tasks, exams, and personalised timetables from a single dashboard. Includes modules for user profiles, subject-wise task planning, exam tracking, note-taking, and reference management. Integrates AI assistance to refine notes and explanations, along with a dedicated Doubtrium space for asking doubts.',
     tech: ['Python', 'TypeScript', 'React', 'Node.js', 'MySQL', 'AI Integration'],
     demo: '#',
-    link: 'https://studivance-study.onrender.com',
+    link: 'https://studivance-z5im.onrender.com',
     source: '#',
     image: studivance
   },
@@ -47,9 +48,9 @@ const projects = [
     description: 'A full-featured note-taking workspace supporting typed, voice, image, and document notes with persistent data through Supabase and local browser fallback. Features a dashboard with workspace summary, calendar-based note review, analytics charts with daily capture flow and streaks, natural search across titles and content, collections, favorites, recent notes, archived notes, and a safe trash lifecycle with restore and permanent delete. Includes OCR via Tesseract.js, PDF/DOCX parsing, read-aloud playback, Google OAuth, and email login.',
     tech: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS', 'Supabase', 'Recharts', 'Tesseract.js', 'Google OAuth'],
     demo: '#',
-    link: '#',
+    link: 'https://noteqira.vercel.app',
     source: '#',
-    image: routheonSkups
+    image: noteqira
   },
   {
     id: '05',
@@ -58,7 +59,7 @@ const projects = [
     description: 'A feature-rich contact management platform powered by AI. Manage contacts with rich fields, track interactions via activity logs, schedule calendar events, and chat with an AI assistant — all offline-first. Features include vCard QR sharing, CSV import/export, JSON backup/restore, duplicate merging with field-level wizard, AI-generated birthday wishes, profile picture generation, and full undo/redo history.',
     tech: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Groq API', 'IndexedDB', 'PWA'],
     demo: '#',
-    link: 'https://contacts-manager-tgbx.onrender.com',
+    link: 'https://contacts-manager-beige.vercel.app',
     source: '#',
     image: contactsManager
   }

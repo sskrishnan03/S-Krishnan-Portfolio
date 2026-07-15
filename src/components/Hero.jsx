@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion } from 'framer-motion';
-import krishnanImg from '../assets/hero video/krishnan.png';
+import krishnanImg from '../assets/hero/krishnan.png';
 import resumePdf from '../assets/Certificate/Krishnan_S_Resume.pdf';
 
 const Hero = () => {

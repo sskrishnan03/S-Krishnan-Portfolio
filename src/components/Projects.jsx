@@ -5,6 +5,7 @@ import studivance from '../assets/about/Studivance.png';
 import contactsManager from '../assets/about/Contacts Manager.png';
 import sqlmind from '../assets/about/SQLMind AI.png';
 
+
 const projects = [
   {
     id: '01',
@@ -41,6 +42,17 @@ const projects = [
   },
   {
     id: '04',
+    title: 'Noteqira',
+    subtitle: 'Modern Note Workspace',
+    description: 'A full-featured note-taking workspace supporting typed, voice, image, and document notes with persistent data through Supabase and local browser fallback. Features a dashboard with workspace summary, calendar-based note review, analytics charts with daily capture flow and streaks, natural search across titles and content, collections, favorites, recent notes, archived notes, and a safe trash lifecycle with restore and permanent delete. Includes OCR via Tesseract.js, PDF/DOCX parsing, read-aloud playback, Google OAuth, and email login.',
+    tech: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS', 'Supabase', 'Recharts', 'Tesseract.js', 'Google OAuth'],
+    demo: '#',
+    link: '#',
+    source: '#',
+    image: routheonSkups
+  },
+  {
+    id: '05',
     title: 'Contacts Manager',
     subtitle: 'Modern Contact Management Platform',
     description: 'A feature-rich contact management platform powered by AI. Manage contacts with rich fields, track interactions via activity logs, schedule calendar events, and chat with an AI assistant — all offline-first. Features include vCard QR sharing, CSV import/export, JSON backup/restore, duplicate merging with field-level wizard, AI-generated birthday wishes, profile picture generation, and full undo/redo history.',

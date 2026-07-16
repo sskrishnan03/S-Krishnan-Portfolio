@@ -15,7 +15,7 @@ const projects = [
     description: 'An AI-powered travel planning web application that generates personalised multi-day itineraries based on user preferences such as budget, interests, and travel style. Leverages Llama 3 for intelligent itinerary generation and integrates route optimization algorithms to ensure efficient travel between destinations. Features dynamic cost estimation, an interactive map interface, destination explorer with categorized discovery, and an AI travel assistant.',
     tech: ['Python', 'Flask', 'Llama 3', 'JavaScript', 'Tailwind CSS', 'SQLite', 'Leaflet.js', 'Serper API'],
     demo: '#',
-    link: 'https://routheonskups.onrender.com',
+    link: 'https://routheonskups-dwu4.onrender.com',
     source: '#',
     image: routheonSkups
   },

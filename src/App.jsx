@@ -8,6 +8,7 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import ChatBot from './components/ChatBot'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+      <ChatBot />
     </>
   )
 }

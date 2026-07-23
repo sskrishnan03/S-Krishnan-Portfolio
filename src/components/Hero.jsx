@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { motion } from 'framer-motion';
 import krishnanImg from '../assets/hero/krishnan.png';
-import resumePdf from '../assets/Certificate/Krishnan_S_Resume.pdf';
+import resumePdf from '../assets/resume/Krishna_S_Resume.pdf';
 
 const Hero = () => {
   useEffect(() => {

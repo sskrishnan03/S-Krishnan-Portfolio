@@ -217,41 +217,17 @@ const ProjectCard = ({ project, index }) => {
               className="flex-1 w-full md:w-auto"
             >
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="relative rounded-3xl overflow-hidden border border-white/10 p-8 md:p-10 min-h-[280px] md:min-h-[320px] flex items-center justify-center cursor-default"
+                className="relative"
               >
-                <div className="absolute inset-0">
-                  <img
-                    src={project.image}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/90 via-[#121212]/50 to-[#121212]/40" />
-
-                <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full opacity-10 bg-white" />
-                <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full opacity-10 bg-white" />
-
-                <div className="relative z-10 text-center">
-                  <div className="text-7xl md:text-8xl font-black leading-none mb-4 text-white/20">
-                    {project.id}
-                  </div>
-                  <div className="w-16 h-[3px] mx-auto rounded-full mb-4 bg-white/50" />
-                  <p className="text-lg md:text-xl font-bold text-white">
-                    {project.subtitle}
-                  </p>
-                  <p className="text-sm mt-2 text-white/60">
-                    {project.tech.slice(0, 3).join(' \u00B7 ')} {'\u00B7'} more
-                  </p>
-                </div>
-
-                <div className="absolute top-0 right-0 w-24 h-24">
-                  <div className="absolute top-0 right-0 w-0 h-0 border-t-[100px] border-r-[100px]" style={{ borderTopColor: 'rgba(255,255,255,0.1)', borderRightColor: 'transparent' }} />
-                </div>
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full block rounded-[28px]"
+                />
               </motion.div>
             </motion.div>
         </motion.div>

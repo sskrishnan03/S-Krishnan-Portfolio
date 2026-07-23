@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Download } from 'lucide-react';
-import resumePdf from '../assets/Certificate/Krishnan_S_Resume.pdf';
+import resumePdf from '../assets/resume/Krishna_S_Resume.pdf';
 
 const ResumeModal = ({ isOpen, onClose }) => {
   return (

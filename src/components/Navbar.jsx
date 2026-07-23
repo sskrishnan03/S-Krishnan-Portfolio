@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import resumePdf from '../assets/Certificate/Krishnan_S_Resume.pdf';
+import resumePdf from '../assets/resume/Krishna_S_Resume.pdf';
 import ResumeModal from './ResumeModal';
 
 const Navbar = () => {

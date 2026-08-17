@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import ksemo from '../assets/about/ksemo.png';
 import routheonSkups from '../assets/about/RoutheonSkups.png';
 import studivance from '../assets/about/Studivance.png';
 import contactsManager from '../assets/about/Contacts Manager.png';
@@ -10,6 +11,17 @@ import noteqira from '../assets/about/noteqira.png';
 const projects = [
   {
     id: '01',
+    title: 'KSEMO',
+    subtitle: 'AI Chatbot',
+    description: 'A voice-first AI chat application that transforms the way you interact with artificial intelligence through natural conversation and speech. Combines cutting-edge speech recognition, natural language processing, and real-time information access into one seamless experience. Leverages Google Gemini for advanced AI conversations, Deepgram for accurate speech-to-text, and browser-native text-to-speech for voice responses. Supports real-time information like weather, news, web search, and mathematical calculations.',
+    tech: ['React', 'FastAPI', 'Google Gemini', 'Deepgram', 'Supabase', 'WebSocket', 'Tailwind CSS'],
+    demo: '#',
+    link: '#',
+    source: '#',
+    image: ksemo
+  },
+  {
+    id: '02',
     title: 'RoutheonSkups',
     subtitle: 'AI Travel Planning',
     description: 'An AI-powered travel planning web application that generates personalised multi-day itineraries based on user preferences such as budget, interests, and travel style. Leverages Llama 3 for intelligent itinerary generation and integrates route optimization algorithms to ensure efficient travel between destinations. Features dynamic cost estimation, an interactive map interface, destination explorer with categorized discovery, and an AI travel assistant.',
@@ -20,7 +32,7 @@ const projects = [
     image: routheonSkups
   },
   {
-    id: '02',
+    id: '03',
     title: 'Study Plan AI',
     subtitle: 'AI-Powered Student Planner',
     description: 'A web-based student planner that lets students manage subjects, daily tasks, exams, and personalised timetables from a single dashboard. Includes modules for user profiles, subject-wise task planning, exam tracking, note-taking, and reference management. Integrates AI assistance to refine notes and explanations, along with a dedicated Doubtrium space for asking doubts.',
@@ -31,7 +43,7 @@ const projects = [
     image: studivance
   },
   {
-    id: '03',
+    id: '04',
     title: 'SQLMind AI',
     subtitle: 'AI-Powered SQL Generation & Optimization',
     description: 'An AI-powered SQL generation and optimization platform that transforms plain English into optimized, explained, and dialect-aware SQL queries in seconds. Leverages Google Gemini 2.5 Flash for intelligent SQL generation with line-by-line query explanation, optimization suggestions, complexity scoring, and cross-dialect compatibility across 7 database dialects. Includes a full-featured AI chat assistant for follow-up Q&A, a Monaco-based SQL editor with syntax highlighting, generation history with favorites system, and a curated example library across 8 categories.',
@@ -42,7 +54,7 @@ const projects = [
     image: sqlmind
   },
   {
-    id: '04',
+    id: '05',
     title: 'Noteqira',
     subtitle: 'Modern Note Workspace',
     description: 'A full-featured note-taking workspace supporting typed, voice, image, and document notes with persistent data through Supabase and local browser fallback. Features a dashboard with workspace summary, calendar-based note review, analytics charts with daily capture flow and streaks, natural search across titles and content, collections, favorites, recent notes, archived notes, and a safe trash lifecycle with restore and permanent delete. Includes OCR via Tesseract.js, PDF/DOCX parsing, read-aloud playback, Google OAuth, and email login.',
@@ -53,7 +65,7 @@ const projects = [
     image: noteqira
   },
   {
-    id: '05',
+    id: '06',
     title: 'Contacts Manager',
     subtitle: 'Modern Contact Management Platform',
     description: 'A feature-rich contact management platform powered by AI. Manage contacts with rich fields, track interactions via activity logs, schedule calendar events, and chat with an AI assistant — all offline-first. Features include vCard QR sharing, CSV import/export, JSON backup/restore, duplicate merging with field-level wizard, AI-generated birthday wishes, profile picture generation, and full undo/redo history.',

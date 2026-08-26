@@ -12,9 +12,9 @@ const projects = [
   {
     id: '01',
     title: 'KSEMO',
-    subtitle: 'AI Chatbot',
-    description: 'A voice-first AI chat application that transforms the way you interact with artificial intelligence through natural conversation and speech. Combines cutting-edge speech recognition, natural language processing, and real-time information access into one seamless experience. Leverages Google Gemini for advanced AI conversations, Deepgram for accurate speech-to-text, and browser-native text-to-speech for voice responses. Supports real-time information like weather, news, web search, and mathematical calculations.',
-    tech: ['React', 'FastAPI', 'Google Gemini', 'Deepgram', 'Supabase', 'WebSocket', 'Tailwind CSS'],
+    subtitle: 'AI Conversational Platform',
+    description: 'A full-stack AI chat platform with voice interaction, file intelligence, and full conversation management. Built with React 19, TypeScript, and Vite on the frontend with Express and tRPC on the backend. Features real-time streaming responses via Server-Sent Events, Google Gemini as the primary AI backend with automatic fallback to AIML API, voice transcription and text-to-speech, file upload with document text extraction, web search integration with multiple providers, message versioning, conversation export as PDF/Word, public sharing, project organization, and multi-account authentication with Google OAuth and email/password. Database powered by Supabase PostgreSQL with Row Level Security.',
+    tech: ['React 19', 'TypeScript', 'Vite', 'Express', 'tRPC', 'Supabase', 'Google Gemini', 'Tailwind CSS', 'Framer Motion'],
     demo: '#',
     link: '#',
     source: '#',

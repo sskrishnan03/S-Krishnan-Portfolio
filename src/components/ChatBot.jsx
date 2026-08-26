@@ -8,13 +8,23 @@ const WELCOME_MESSAGE = {
 };
 
 const QUICK_ACTIONS = [
-  { label: 'Projects', query: 'Tell me about Krishnan\'s projects' },
+  { label: 'Projects', query: "Tell me about Krishnan's projects" },
   { label: 'Skills', query: 'What skills does Krishnan have?' },
   { label: 'Contact Me', query: 'I want to contact Krishnan' },
 ];
 
-const ContactFlow = ({ step, data, onChange, onConfirm, onCancel }) => {
-  if (step === 'name') {
+let idCounter = 0;
+const nextId = () => `msg-${++idCounter}`;
+
+function ContactFlow({ step, data, onChange, onConfirm, onCancel }) {
+  const inputClass =
+    'flex-1 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/40 focus:bg-white/[0.06] transition-all duration-300 font-medium';
+  const btnClass =
+    'px-4 py-3 rounded-xl bg-white text-[#121212] text-xs font-bold hover:bg-[#D4D4D4] transition-all duration-300';
+  const cancelClass =
+    'text-[10px] text-white/30 hover:text-white/60 transition-colors mt-1 cursor-pointer text-left';
+
+  if (step === 'name')
     return (
       <div className="flex flex-col gap-3 mt-3">
         <p className="text-xs font-semibold text-[#D4D4D4]">Enter your name:</p>
@@ -25,22 +35,20 @@ const ContactFlow = ({ step, data, onChange, onConfirm, onCancel }) => {
             value={data.name}
             onChange={(e) => onChange({ ...data, name: e.target.value })}
             placeholder="Your name"
-            className="flex-1 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/40 focus:bg-white/[0.06] transition-all duration-300 font-medium"
+            className={inputClass}
             onKeyDown={(e) => e.key === 'Enter' && data.name.trim() && onChange({ ...data, _next: 'email' })}
           />
-          <button
-            onClick={() => data.name.trim() && onChange({ ...data, _next: 'email' })}
-            className="px-4 py-3 rounded-xl bg-white text-[#121212] text-xs font-bold hover:bg-[#D4D4D4] transition-all duration-300"
-          >
+          <button onClick={() => data.name.trim() && onChange({ ...data, _next: 'email' })} className={btnClass}>
             Next
           </button>
         </div>
-        <button onClick={onCancel} className="text-[10px] text-white/30 hover:text-white/60 transition-colors mt-1 cursor-pointer text-left">cancel</button>
+        <button onClick={onCancel} className={cancelClass}>
+          cancel
+        </button>
       </div>
     );
-  }
 
-  if (step === 'email') {
+  if (step === 'email')
     return (
       <div className="flex flex-col gap-3 mt-3">
         <p className="text-xs font-semibold text-[#D4D4D4]">Enter your email:</p>
@@ -51,22 +59,20 @@ const ContactFlow = ({ step, data, onChange, onConfirm, onCancel }) => {
             value={data.email}
             onChange={(e) => onChange({ ...data, email: e.target.value })}
             placeholder="your@email.com"
-            className="flex-1 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/40 focus:bg-white/[0.06] transition-all duration-300 font-medium"
+            className={inputClass}
             onKeyDown={(e) => e.key === 'Enter' && data.email.trim() && onChange({ ...data, _next: 'message' })}
           />
-          <button
-            onClick={() => data.email.trim() && onChange({ ...data, _next: 'message' })}
-            className="px-4 py-3 rounded-xl bg-white text-[#121212] text-xs font-bold hover:bg-[#D4D4D4] transition-all duration-300"
-          >
+          <button onClick={() => data.email.trim() && onChange({ ...data, _next: 'message' })} className={btnClass}>
             Next
           </button>
         </div>
-        <button onClick={onCancel} className="text-[10px] text-white/30 hover:text-white/60 transition-colors mt-1 cursor-pointer text-left">cancel</button>
+        <button onClick={onCancel} className={cancelClass}>
+          cancel
+        </button>
       </div>
     );
-  }
 
-  if (step === 'message') {
+  if (step === 'message')
     return (
       <div className="flex flex-col gap-3 mt-3">
         <p className="text-xs font-semibold text-[#D4D4D4]">Your message:</p>
@@ -76,7 +82,7 @@ const ContactFlow = ({ step, data, onChange, onConfirm, onCancel }) => {
           onChange={(e) => onChange({ ...data, message: e.target.value })}
           placeholder="What would you like to say?"
           rows={3}
-          className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/40 focus:bg-white/[0.06] transition-all duration-300 resize-none font-medium"
+          className={`${inputClass} w-full resize-none`}
         />
         <button
           onClick={() => data.message.trim() && onChange({ ...data, _next: 'confirm' })}
@@ -85,85 +91,117 @@ const ContactFlow = ({ step, data, onChange, onConfirm, onCancel }) => {
         >
           Review & Send
         </button>
-        <button onClick={onCancel} className="text-[10px] text-white/30 hover:text-white/60 transition-colors mt-1 cursor-pointer text-left">cancel</button>
+        <button onClick={onCancel} className={cancelClass}>
+          cancel
+        </button>
       </div>
     );
-  }
 
-  if (step === 'confirm') {
+  if (step === 'confirm')
     return (
       <div className="flex flex-col gap-3 mt-3">
         <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.08] text-xs space-y-2">
           <p className="text-white/40 font-bold uppercase tracking-[0.15em] text-[10px] mb-3">Review your message</p>
-          <div className="flex items-start gap-2">
-            <span className="text-white/30 shrink-0 w-12">Name</span>
-            <span className="text-white font-medium break-words min-w-0">{data.name}</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <span className="text-white/30 shrink-0 w-12">Email</span>
-            <span className="text-white font-medium break-words min-w-0">{data.email}</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <span className="text-white/30 shrink-0 w-12">Message</span>
-            <span className="text-white font-medium break-words min-w-0 overflow-wrap-anywhere">{data.message}</span>
-          </div>
+          {[
+            ['Name', data.name],
+            ['Email', data.email],
+            ['Message', data.message],
+          ].map(([label, value]) => (
+            <div key={label} className="flex items-start gap-2">
+              <span className="text-white/30 shrink-0 w-12">{label}</span>
+              <span className="text-white font-medium break-words min-w-0 overflow-wrap-anywhere">{value}</span>
+            </div>
+          ))}
         </div>
         <div className="flex gap-2">
-          <button
-            onClick={onConfirm}
-            className="flex-1 px-4 py-3 rounded-xl bg-white text-[#121212] text-xs font-bold hover:bg-[#D4D4D4] transition-all duration-300 flex items-center justify-center gap-2"
-          >
+          <button onClick={onConfirm} className="flex-1 px-4 py-3 rounded-xl bg-white text-[#121212] text-xs font-bold hover:bg-[#D4D4D4] transition-all duration-300 flex items-center justify-center gap-2">
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
             Send Message
           </button>
-          <button
-            onClick={() => onChange({ ...data, _back: 'message' })}
-            className="px-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-xs font-bold hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-          >
+          <button onClick={() => onChange({ ...data, _back: 'message' })} className="px-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.08] text-white text-xs font-bold hover:bg-white/10 hover:border-white/20 transition-all duration-300">
             Edit
           </button>
         </div>
-        <button onClick={onCancel} className="text-[10px] text-white/30 hover:text-white/60 transition-colors mt-1 cursor-pointer text-left">cancel</button>
+        <button onClick={onCancel} className={cancelClass}>
+          cancel
+        </button>
       </div>
     );
-  }
 
   return null;
-};
+}
 
-const TypingIndicator = () => (
-  <div className="flex items-center gap-1.5 px-5 py-3.5">
-    <div className="w-1.5 h-1.5 rounded-full bg-white/30 animate-bounce" style={{ animationDelay: '0ms' }} />
-    <div className="w-1.5 h-1.5 rounded-full bg-white/30 animate-bounce" style={{ animationDelay: '150ms' }} />
-    <div className="w-1.5 h-1.5 rounded-full bg-white/30 animate-bounce" style={{ animationDelay: '300ms' }} />
-  </div>
-);
+function TypingIndicator() {
+  return (
+    <div className="flex items-center gap-1.5 px-5 py-3.5">
+      <span className="w-1.5 h-1.5 rounded-full bg-white/30 animate-bounce" style={{ animationDelay: '0ms' }} />
+      <span className="w-1.5 h-1.5 rounded-full bg-white/30 animate-bounce" style={{ animationDelay: '150ms' }} />
+      <span className="w-1.5 h-1.5 rounded-full bg-white/30 animate-bounce" style={{ animationDelay: '300ms' }} />
+    </div>
+  );
+}
 
-const BotAvatar = () => (
-  <div className="w-7 h-7 rounded-lg bg-white/[0.08] border border-white/[0.06] flex items-center justify-center shrink-0">
-    <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714a2.25 2.25 0 00.659 1.591L19 14.5m-4.25-11.396c.251.023.501.05.75.082M12 21a9 9 0 100-18 9 9 0 000 18zm0 0v-2.25a2.25 2.25 0 012.25-2.25h1.5a2.25 2.25 0 012.25 2.25V21" />
-    </svg>
-  </div>
-);
+function BotAvatar() {
+  return (
+    <div className="w-7 h-7 rounded-lg bg-white/[0.08] border border-white/[0.06] flex items-center justify-center shrink-0">
+      <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714a2.25 2.25 0 00.659 1.591L19 14.5m-4.25-11.396c.251.023.501.05.75.082M12 21a9 9 0 100-18 9 9 0 000 18zm0 0v-2.25a2.25 2.25 0 012.25-2.25h1.5a2.25 2.25 0 012.25 2.25V21" />
+      </svg>
+    </div>
+  );
+}
 
-const ChatBot = () => {
+function MessageBubble({ msg }) {
+  const isUser = msg.role === 'user';
+  return (
+    <motion.div
+      key={msg.id}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25 }}
+      className={`flex gap-2.5 ${isUser ? 'justify-end' : 'justify-start'}`}
+    >
+      {!isUser && <BotAvatar />}
+      <div className="max-w-[80%] min-w-0">
+        {isUser ? (
+          <div className="px-4 py-3 rounded-2xl rounded-tr-md bg-white text-[#121212] break-words overflow-hidden">
+            <p className="text-[13px] font-medium leading-relaxed whitespace-pre-wrap break-words overflow-wrap-anywhere">
+              {msg.content}
+            </p>
+          </div>
+        ) : (
+          <div className="px-4 py-3 rounded-2xl rounded-tl-md bg-[#1E1E1E] border border-white/[0.06] break-words overflow-hidden">
+            {msg.content ? (
+              <p className="text-[13px] text-[#D4D4D4] leading-relaxed whitespace-pre-wrap break-words overflow-wrap-anywhere">
+                {msg.content}
+              </p>
+            ) : (
+              <TypingIndicator />
+            )}
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([WELCOME_MESSAGE]);
   const [inputValue, setInputValue] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [contactFlow, setContactFlow] = useState({ active: false, step: 'name', data: { name: '', email: '', message: '' } });
+  const [isStreaming, setIsStreaming] = useState(false);
+  const [contactFlow, setContactFlow] = useState({
+    active: false,
+    step: 'name',
+    data: { name: '', email: '', message: '' },
+  });
+
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
-  const msgIdCounter = useRef(0);
+  const streamAbortRef = useRef(null);
   const hasOpenedRef = useRef(false);
-
-  const nextId = () => {
-    msgIdCounter.current += 1;
-    return msgIdCounter.current;
-  };
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -171,7 +209,7 @@ const ChatBot = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isTyping, scrollToBottom]);
+  }, [messages, isStreaming, scrollToBottom]);
 
   useEffect(() => {
     if (isOpen && !hasOpenedRef.current) {
@@ -181,89 +219,160 @@ const ChatBot = () => {
     }
   }, [isOpen]);
 
-  const sendToAI = async (conversationMessages) => {
-    setIsTyping(true);
+  useEffect(() => () => streamAbortRef.current?.abort(), []);
+
+  const streamReply = useCallback(async (conversationMessages) => {
+    setIsStreaming(true);
+    const assistantId = nextId();
+    setMessages((prev) => [...prev, { id: assistantId, role: 'bot', content: '' }]);
+
+    const controller = new AbortController();
+    streamAbortRef.current = controller;
+    let fullText = '';
+
     try {
-      const res = await fetch('/api/chat', {
+      const res = await fetch('/api/chat/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
         body: JSON.stringify({
-          messages: conversationMessages.map(m => ({ role: m.role === 'bot' ? 'assistant' : 'user', content: m.content }))
+          messages: conversationMessages.map((m) => ({
+            role: m.role === 'bot' ? 'assistant' : 'user',
+            content: m.content,
+          })),
         }),
       });
 
       if (!res.ok) throw new Error('Failed');
 
-      const data = await res.json();
-      const reply = data.reply || "Sorry, I couldn't process that. Please try again.";
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
 
-      const hasContactIntent = reply.includes('[CONTACT_INTENT]');
-      const cleanReply = reply.replace(/\[CONTACT_INTENT\]/g, '').trim();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
 
-      setMessages(prev => [...prev, { id: nextId(), role: 'bot', content: cleanReply }]);
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
 
-      if (hasContactIntent) {
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed.startsWith('data: ')) continue;
+          const payload = trimmed.slice(6);
+          if (payload === '[DONE]') break;
+
+          try {
+            const data = JSON.parse(payload);
+            if (data.delta) {
+              fullText += data.delta;
+              setMessages((prev) =>
+                prev.map((m) => (m.id === assistantId ? { ...m, content: fullText } : m))
+              );
+            }
+            if (data.error) {
+              fullText = data.error;
+              setMessages((prev) =>
+                prev.map((m) => (m.id === assistantId ? { ...m, content: data.error } : m))
+              );
+            }
+          } catch {}
+        }
+      }
+
+      if (!fullText) {
+        fullText = "Sorry, something went wrong. Please try again or email Krishnan directly at sskrishnan03@gmail.com";
+        setMessages((prev) =>
+          prev.map((m) => (m.id === assistantId ? { ...m, content: fullText } : m))
+        );
+      }
+
+      if (fullText.includes('[CONTACT_INTENT]')) {
+        const cleanText = fullText.replace(/\[CONTACT_INTENT\]/g, '').trim();
+        setMessages((prev) =>
+          prev.map((m) => (m.id === assistantId ? { ...m, content: cleanText } : m))
+        );
         setTimeout(() => {
           setContactFlow({ active: true, step: 'name', data: { name: '', email: '', message: '' } });
-          setMessages(prev => [...prev, {
-            id: nextId(),
-            role: 'bot',
-            content: "I'd love to help you connect with Krishnan! Let me collect a few details.",
-          }]);
+          setMessages((prev) => [
+            ...prev,
+            { id: nextId(), role: 'bot', content: "I'd love to help you connect with Krishnan! Let me collect a few details." },
+          ]);
         }, 500);
       }
-    } catch {
-      setMessages(prev => [...prev, {
-        id: nextId(),
-        role: 'bot',
-        content: "Sorry, something went wrong. Please try again or email Krishnan directly at sskrishnan03@gmail.com"
-      }]);
+    } catch (err) {
+      if (err.name === 'AbortError') return;
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId
+            ? { ...m, content: "Sorry, something went wrong. Please try again or email Krishnan directly at sskrishnan03@gmail.com" }
+            : m
+        )
+      );
     } finally {
-      setIsTyping(false);
+      setIsStreaming(false);
+      streamAbortRef.current = null;
     }
-  };
+  }, []);
 
-  const handleSend = () => {
+  const handleSend = useCallback(() => {
     const text = inputValue.trim();
-    if (!text || isTyping) return;
+    if (!text || isStreaming) return;
 
     const userMsg = { id: nextId(), role: 'user', content: text };
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
     setInputValue('');
-    sendToAI(newMessages);
-  };
+    streamReply(newMessages);
+  }, [inputValue, isStreaming, messages, streamReply]);
 
-  const handleQuickAction = (query) => {
-    setInputValue('');
-    const userMsg = { id: nextId(), role: 'user', content: query };
-    const newMessages = [...messages, userMsg];
-    setMessages(newMessages);
-    sendToAI(newMessages);
-  };
+  const handleQuickAction = useCallback(
+    (query) => {
+      if (isStreaming) return;
+      const userMsg = { id: nextId(), role: 'user', content: query };
+      const newMessages = [...messages, userMsg];
+      setMessages(newMessages);
+      streamReply(newMessages);
+    },
+    [isStreaming, messages, streamReply]
+  );
 
-  const handleContactChange = (newData) => {
+  const handleContactChange = useCallback((newData) => {
     if (newData._next) {
       const stepMap = { name: 'email', email: 'message', message: 'confirm' };
-      setContactFlow(prev => ({ ...prev, step: stepMap[prev.step], data: { ...newData, _next: undefined } }));
+      setContactFlow((prev) => ({
+        ...prev,
+        step: stepMap[prev.step],
+        data: { ...newData, _next: undefined },
+      }));
     } else if (newData._back) {
-      setContactFlow(prev => ({ ...prev, step: newData._back, data: { ...newData, _back: undefined } }));
+      setContactFlow((prev) => ({
+        ...prev,
+        step: newData._back,
+        data: { ...newData, _back: undefined },
+      }));
     } else {
-      setContactFlow(prev => ({ ...prev, data: newData }));
+      setContactFlow((prev) => ({ ...prev, data: newData }));
     }
-  };
+  }, []);
 
-  const handleContactConfirm = async () => {
+  const handleContactConfirm = useCallback(async () => {
     const { data } = contactFlow;
     setContactFlow({ active: false, step: 'name', data: { name: '', email: '', message: '' } });
 
-    setMessages(prev => [...prev, {
+    const confirmMsg = {
       id: nextId(),
       role: 'user',
-      content: `Sending message as ${data.name} (${data.email}): "${data.message}"`
-    }]);
+      content: `Sending message as ${data.name} (${data.email}): "${data.message}"`,
+    };
+    const withConfirm = [...messages, confirmMsg];
+    setMessages(withConfirm);
 
-    setIsTyping(true);
+    setIsStreaming(true);
+    const assistantId = nextId();
+    setMessages((prev) => [...prev, { id: assistantId, role: 'bot', content: '' }]);
+
     try {
       const res = await fetch('/api/send-message', {
         method: 'POST',
@@ -273,36 +382,45 @@ const ChatBot = () => {
           lastName: data.name.split(' ').slice(1).join(' ') || '.',
           email: data.email,
           message: data.message,
-          permission: true
         }),
       });
 
       if (!res.ok) throw new Error('Failed');
 
-      setMessages(prev => [...prev, {
-        id: nextId(),
-        role: 'bot',
-        content: "Message sent successfully! Krishnan will get back to you soon. Is there anything else you'd like to know?"
-      }]);
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId
+            ? { ...m, content: "Message sent successfully! Krishnan will get back to you soon. Is there anything else you'd like to know?" }
+            : m
+        )
+      );
     } catch {
-      setMessages(prev => [...prev, {
-        id: nextId(),
-        role: 'bot',
-        content: "Failed to send message. Please try emailing Krishnan directly at sskrishnan03@gmail.com"
-      }]);
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId
+            ? { ...m, content: "Failed to send message. Please try emailing Krishnan directly at sskrishnan03@gmail.com" }
+            : m
+        )
+      );
     } finally {
-      setIsTyping(false);
+      setIsStreaming(false);
     }
-  };
+  }, [contactFlow, messages]);
 
-  const handleContactCancel = () => {
+  const handleContactCancel = useCallback(() => {
     setContactFlow({ active: false, step: 'name', data: { name: '', email: '', message: '' } });
-    setMessages(prev => [...prev, {
-      id: nextId(),
-      role: 'bot',
-      content: "No worries! Feel free to ask me anything else."
-    }]);
-  };
+    setMessages((prev) => [
+      ...prev,
+      { id: nextId(), role: 'bot', content: "No worries! Feel free to ask me anything else." },
+    ]);
+  }, []);
+
+  const handleReset = useCallback(() => {
+    streamAbortRef.current?.abort();
+    setMessages([WELCOME_MESSAGE]);
+    setContactFlow({ active: false, step: 'name', data: { name: '', email: '', message: '' } });
+    setIsStreaming(false);
+  }, []);
 
   return (
     <>
@@ -335,48 +453,30 @@ const ChatBot = () => {
                 </div>
               </div>
 
-              <button
-                onClick={() => { setMessages([WELCOME_MESSAGE]); setContactFlow({ active: false, step: 'name', data: { name: '', email: '', message: '' } }); setIsTyping(false); }}
-                className="relative w-8 h-8 rounded-xl flex items-center justify-center text-white/30 hover:text-white hover:bg-white/[0.06] transition-all duration-300 cursor-pointer"
-                title="New chat"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-              </button>
-
-              <button
-                onClick={() => setIsOpen(false)}
-                className="relative w-8 h-8 rounded-xl flex items-center justify-center text-white/30 hover:text-white hover:bg-white/[0.06] transition-all duration-300 cursor-pointer"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              <div className="relative flex items-center gap-1">
+                <button
+                  onClick={handleReset}
+                  className="w-8 h-8 rounded-xl flex items-center justify-center text-white/30 hover:text-white hover:bg-white/[0.06] transition-all duration-300 cursor-pointer"
+                  title="New chat"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="w-8 h-8 rounded-xl flex items-center justify-center text-white/30 hover:text-white hover:bg-white/[0.06] transition-all duration-300 cursor-pointer"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 py-5 space-y-4">
               {messages.map((msg) => (
-                <motion.div
-                  key={msg.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className={`flex gap-2.5 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  {msg.role === 'bot' && <BotAvatar />}
-                  <div className={`max-w-[80%] min-w-0 ${msg.role === 'user' ? '' : ''}`}>
-                    {msg.role === 'bot' ? (
-                      <div className="px-4 py-3 rounded-2xl rounded-tl-md bg-[#1E1E1E] border border-white/[0.06] break-words overflow-hidden">
-                        <p className="text-[13px] text-[#D4D4D4] leading-relaxed whitespace-pre-wrap break-words overflow-wrap-anywhere">{msg.content}</p>
-                      </div>
-                    ) : (
-                      <div className="px-4 py-3 rounded-2xl rounded-tr-md bg-white text-[#121212] break-words overflow-hidden">
-                        <p className="text-[13px] font-medium leading-relaxed whitespace-pre-wrap break-words overflow-wrap-anywhere">{msg.content}</p>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
+                <MessageBubble key={msg.id} msg={msg} />
               ))}
 
               {contactFlow.active && (
@@ -396,19 +496,6 @@ const ChatBot = () => {
                         onCancel={handleContactCancel}
                       />
                     </div>
-                  </div>
-                </motion.div>
-              )}
-
-              {isTyping && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex gap-2.5 justify-start"
-                >
-                  <BotAvatar />
-                  <div className="px-1 py-1 rounded-2xl rounded-tl-md bg-[#1E1E1E] border border-white/[0.06]">
-                    <TypingIndicator />
                   </div>
                 </motion.div>
               )}
@@ -438,13 +525,13 @@ const ChatBot = () => {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
-                  placeholder={contactFlow.active ? "Type 'cancel' to abort..." : "Type a message..."}
-                  disabled={isTyping}
+                  placeholder={contactFlow.active ? "Type 'cancel' to abort..." : 'Type a message...'}
+                  disabled={isStreaming}
                   className="flex-1 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/40 focus:bg-white/[0.06] transition-all duration-300 font-medium disabled:opacity-40"
                 />
                 <button
                   onClick={handleSend}
-                  disabled={!inputValue.trim() || isTyping}
+                  disabled={!inputValue.trim() || isStreaming}
                   className="w-11 h-11 rounded-xl bg-white text-[#121212] flex items-center justify-center hover:bg-[#D4D4D4] transition-all duration-300 disabled:opacity-15 disabled:cursor-not-allowed cursor-pointer shrink-0"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -464,26 +551,13 @@ const ChatBot = () => {
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
-            <motion.div
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
+            <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </motion.div>
           ) : (
-            <motion.div
-              key="chat"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="flex items-center justify-center"
-            >
+            <motion.div key="chat" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }} className="flex items-center justify-center">
               <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
               </svg>
@@ -501,6 +575,4 @@ const ChatBot = () => {
       </motion.button>
     </>
   );
-};
-
-export default ChatBot;
+}

@@ -13,10 +13,15 @@ const projects = [
     id: '01',
     title: 'KSEMO',
     subtitle: 'AI Conversational Platform',
-    description: 'A full-stack AI chat platform with voice interaction, file intelligence, and full conversation management. Built with React 19, TypeScript, and Vite on the frontend with Express and tRPC on the backend. Features real-time streaming responses via Server-Sent Events, Google Gemini as the primary AI backend with automatic fallback to AIML API, voice transcription and text-to-speech, file upload with document text extraction, web search integration with multiple providers, message versioning, conversation export as PDF/Word, public sharing, project organization, and multi-account authentication with Google OAuth and email/password. Database powered by Supabase PostgreSQL with Row Level Security.',
+    description: [
+      'KSEMO is a full-stack AI-powered assistant platform built to bring chat, document creation, voice interaction, and personal knowledge management into one unified experience. From real-time streaming conversations to professional document generation, everything happens inside a single application. The platform connects to AI language models and streams responses word-by-word in real time, giving the feel of a live assistant at work.',
+      'At its core, KSEMO features a durable memory system that automatically extracts important facts from your conversations — your preferences, relationships, and habits — and recalls them across sessions so every interaction feels personal and continuous. A built-in document creator turns any conversation into a complete, downloadable PDF, Word, Excel, PowerPoint, or Text file, with intelligent structure planning for headings, tables, lists, and layouts.',
+      'Voice interaction is built in from the ground up: speak through your microphone, get transcribed, and hear responses read back with text-to-speech, even in a full hands-free mode that lets you interrupt mid-speech. A file library extracts text from uploaded documents so they can be attached to any conversation as direct context. Conversations can be pinned, archived, renamed, duplicated, organized into projects, searched instantly, shared through public links or email, exported as PDF/Word, and every edited message keeps version history.',
+      'On the engineering side, it is built with React 19, TypeScript, and Vite on the frontend with Express and tRPC on the backend, delivering real-time streaming responses via Server-Sent Events. Google Gemini serves as the primary AI backend with automatic fallback to the AIML API, supported by voice transcription, text-to-speech, document text extraction, and web search. Database storage is powered by Supabase PostgreSQL with Row Level Security, and authentication supports Google OAuth plus email/password with secure session management.',
+    ],
     tech: ['React 19', 'TypeScript', 'Vite', 'Express', 'tRPC', 'Supabase', 'Google Gemini', 'Tailwind CSS', 'Framer Motion'],
-    demo: '#',
-    link: '#',
+    demo: 'https://ksemo.onrender.com/',
+    link: 'https://ksemo.onrender.com/',
     source: '#',
     image: ksemo
   },
@@ -156,15 +161,19 @@ const ProjectCard = ({ project, index }) => {
               {project.subtitle}
             </motion.p>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35 }}
-              className="text-[#D4D4D4] leading-relaxed text-sm md:text-base mb-8 max-w-lg"
+              className="mb-8 max-w-lg"
             >
-              {project.description}
-            </motion.p>
+              {(Array.isArray(project.description) ? project.description : [project.description]).map((para, i) => (
+                <p key={i} className="text-[#D4D4D4] leading-relaxed text-sm md:text-base mb-3 last:mb-0">
+                  {para}
+                </p>
+              ))}
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

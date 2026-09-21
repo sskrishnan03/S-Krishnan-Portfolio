@@ -40,7 +40,7 @@ projects.
 ## Featured Projects
 
 <div align="center">
-<img src="src/assets/about/ksemo.png" alt="KSEMO" width="80%" />
+<img src="src\assets\about\ksemo.png" alt="KSEMO" width="80%" />
 </div>
 
 **KSEMO** — An full-stack AI chat platform built to give you a single, private place to have intelligent conversations, manage files, capture ideas, and interact with AI using both text and voice. Instead of juggling multiple chat apps, note-taking tools, and file managers, KSEMO brings everything together in one beautifully designed application.
